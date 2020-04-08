@@ -224,11 +224,11 @@ class Redirect(object):
   def create_back(back: int = 1):
     return Redirect(lambda path: path[:-(back)])
   
-  def create_move(to: list):
-    return Redirect(lambda path: path[:-1] + list(to))
+  def create_move(to: list, back: int = 1):
+    return Redirect(lambda path: path[:-(back)] + list(to))
   
-  def create_go(to: list):
-    return Redirect(lambda path: path + list(to))
+  def create_go(to: list, back: int = 0):
+    return Redirect(lambda path: path[:len(path) - back] + list(to))
   
   def create_update_params(ctx: BaseContext, **params):
     ctx.params.update(params)
